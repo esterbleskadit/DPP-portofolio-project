@@ -19,6 +19,7 @@ The primary goal of this application is to quantify how customer dissatisfaction
 * **Proactive Carbon Savings:** Eliminating 20% of customer complaints projects a reduction of multiple tons of $CO_2$ reverse-logistics emissions alongside substantial cost savings.
 
 ---
+
 ## Repository Structure
 
 ```text
@@ -35,6 +36,9 @@ ecommerce-churn-portfolio/
 └── README.md                 # Project documentation
 
 ---
+
+## Data Dictionary
+
 | Feature Name | Description |
 | :--- | :--- |
 | **CustomerID** | Unique customer ID |
@@ -59,6 +63,7 @@ ecommerce-churn-portfolio/
 | **CashbackAmount** | Average cashback earned in the last month |
 
 ---
+
 ## Tech Stack
 
 * **Frontend & Framework: Streamlit Streamlit-ECharts
