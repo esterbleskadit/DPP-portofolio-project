@@ -2,7 +2,7 @@
 
 A data-driven interactive portfolio project bridging **customer retention analytics** with **logistics efficiency and carbon footprint reduction (ESG)**.
 
-**[View Live Dashboard](https://your-streamlit-app-link.streamlit.app)** *(Update link after deployment)*
+**[View Live Dashboard]()**
 
 ---
 
@@ -14,7 +14,7 @@ The primary goal of this application is to quantify how customer dissatisfaction
 
 ## Business Problem & Key Business Insights
 
-* **Onboarding Risk Window:** Customers in their first 3 months (`0-3 Mos` tenure bucket) demonstrate the highest churn risk, indicating a critical period for targeted retention campaigns.
+* **Onboarding Risk Window:** Customers in their first 3 months (`0-3 Mos` tenure) demonstrate the highest churn risk, indicating a critical period for targeted retention campaigns.
 * **Environmental Impact of Dissatisfaction:** Registered customer complaints lead to significantly elevated return rates, driving up reverse logistics mileage and overall emissions.
 * **Proactive Carbon Savings:** Eliminating 20% of customer complaints projects a reduction of multiple tons of $CO_2$ reverse-logistics emissions alongside substantial cost savings.
 
