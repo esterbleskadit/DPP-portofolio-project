@@ -1,6 +1,6 @@
 # E-Commerce Churn & Sustainability Analytics Dashboard
 
-A data-driven interactive portfolio project bridging **customer retention analytics** with **logistics efficiency and carbon footprint reduction (ESG)**.
+A data-driven interactive portfolio project bridging customer retention analytics** with ogistics efficiency and carbon footprint reduction (ESG).
 
 **[View Live Dashboard]()**
 
@@ -14,9 +14,9 @@ The primary goal of this application is to quantify how customer dissatisfaction
 
 ## Business Problem & Key Business Insights
 
-* **Onboarding Risk Window:** Customers in their first 3 months (`0-3 Mos` tenure) demonstrate the highest churn risk, indicating a critical period for targeted retention campaigns.
-* **Environmental Impact of Dissatisfaction:** Registered customer complaints lead to significantly elevated return rates, driving up reverse logistics mileage and overall emissions.
-* **Proactive Carbon Savings:** Eliminating 20% of customer complaints projects a reduction of multiple tons of $CO_2$ reverse-logistics emissions alongside substantial cost savings.
+* Onboarding Risk Window: Customers in their first 3 months (`0-3 Mos` tenure) demonstrate the highest churn risk, indicating a critical period for targeted retention campaigns.
+* Environmental Impact of Dissatisfaction: Registered customer complaints lead to significantly elevated return rates, driving up reverse logistics mileage and overall emissions.
+* Proactive Carbon Savings: Eliminating 20% of customer complaints projects a reduction of multiple tons of $CO_2$ reverse-logistics emissions alongside substantial cost savings.
 
 ---
 
@@ -34,10 +34,10 @@ ecommerce-churn-portfolio/
 ├── app.py                    # Streamlit & ECharts dashboard script
 ├── requirements.txt          # Project dependencies
 └── README.md                 # Project documentation
-
+```
 ---
 
-## Data Dictionary
+## Data Dictionary 
 
 | Feature Name | Description |
 | :--- | :--- |
@@ -66,18 +66,18 @@ ecommerce-churn-portfolio/
 
 ## Tech Stack
 
-* **Frontend & Framework: Streamlit Streamlit-ECharts
-* **Data Processing:** `Python 3.x`, `Pandas`, `NumPy`
-* **Environment & Package Management: uv / pip
+* Frontend & Framework: Streamlit-ECharts
+* Data Processing: `Python 3.x`, `Pandas`, `NumPy`
+* Environment & Package Management: uv / pip
 
 ---
 
-## Dashboard Architecture
+## Dashboard
 
-* **Overview (Tab 1):** Executive metrics tracking customer retention ratios, churn by product category, payment method risks, and cohort behavioral patterns.
-* **Sustainability & Logistics (Tab 2):** ESG breakdown of $CO_2$ emissions and returns linked to complaint status, including an interactive **CO2 Reduction Simulator**.
-* **Risk Simulator (Tab 3):** Real-time single-customer churn prediction gauge based on tenure, order recency, satisfaction scores, and logistics distance.
-* **Raw Data (Tab 4):** Filtered dataset viewer with CSV export functionality.
+* Overview (Tab 1): Executive metrics tracking customer retention ratios, churn by product category, payment method risks, and cohort behavioral patterns.
+* Sustainability & Logistics (Tab 2): ESG breakdown of $CO_2$ emissions and returns linked to complaint status, including an interactive **CO2 Reduction Simulator**.
+* Risk Simulator (Tab 3): Real-time single-customer churn prediction gauge based on tenure, order recency, satisfaction scores, and logistics distance.
+* Data (Tab 4): Filtered dataset viewer with CSV export functionality.
 
 ---
 
