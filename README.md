@@ -1,6 +1,6 @@
 # E-Commerce Churn & Sustainability Analytics Dashboard
 
-A data-driven interactive portfolio project bridging customer retention analytics** with ogistics efficiency and carbon footprint reduction (ESG).
+A data-driven interactive portfolio project bridging customer retention analytics with logistics efficiency and carbon footprint reduction (ESG).
 
 **[View Live Dashboard]()**
 
@@ -14,9 +14,9 @@ The primary goal of this application is to quantify how customer dissatisfaction
 
 ## Business Problem & Key Business Insights
 
-* Onboarding Risk Window: Customers in their first 3 months (`0-3 Mos` tenure) demonstrate the highest churn risk, indicating a critical period for targeted retention campaigns.
-* Environmental Impact of Dissatisfaction: Registered customer complaints lead to significantly elevated return rates, driving up reverse logistics mileage and overall emissions.
-* Proactive Carbon Savings: Eliminating 20% of customer complaints projects a reduction of multiple tons of $CO_2$ reverse-logistics emissions alongside substantial cost savings.
+* **Onboarding Risk Window:** Customers in their first 3 months (`0-3 Mos` tenure) demonstrate the highest churn risk, indicating a critical period for targeted retention campaigns.
+* **Environmental Impact of Dissatisfaction:** Registered customer complaints lead to significantly elevated return rates, driving up reverse logistics mileage and overall emissions.
+* **Proactive Carbon Savings:** Eliminating 20% of customer complaints projects a reduction of multiple tons of $CO_2$ reverse-logistics emissions alongside substantial cost savings.
 
 ---
 
@@ -75,7 +75,7 @@ ecommerce-churn-portfolio/
 ## Dashboard
 
 * Overview (Tab 1): Executive metrics tracking customer retention ratios, churn by product category, payment method risks, and cohort behavioral patterns.
-* Sustainability & Logistics (Tab 2): ESG breakdown of $CO_2$ emissions and returns linked to complaint status, including an interactive **CO2 Reduction Simulator**.
+* Sustainability & Logistics (Tab 2): ESG breakdown of $CO_2$ emissions and returns linked to complaint status, including an interactive CO2 Reduction Simulator.
 * Risk Simulator (Tab 3): Real-time single-customer churn prediction gauge based on tenure, order recency, satisfaction scores, and logistics distance.
 * Data (Tab 4): Filtered dataset viewer with CSV export functionality.
 
@@ -83,7 +83,7 @@ ecommerce-churn-portfolio/
 
 ## Quick Start
 
-* **git clone <your-repo-url>
-* **cd ecommerce-churn-portfolio
-* **uv run streamlit run app.py
+* git clone <git@github.com:esterbleskadit/DPP-portofolio-project.git>
+* cd ecommerce-churn-portfolio
+* uv run streamlit run app.py
 
