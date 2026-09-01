@@ -80,7 +80,7 @@ try:
 
     st.sidebar.divider()
 
-  #KPI metrics
+  #kpi metrics
   st.markdown('### Key Performance Indicators')
   kpi1, kpi2, kpi3, kpi4 = st.columns(4)
 
@@ -103,10 +103,11 @@ try:
   #navigation tabs
   tab1, tab2, tab3, tab4 = st.tabs(['Overview', 'Sustainability & Logistics', 'Risk Simulator', 'Data'])
 
-  #Tab 1: overview
+  #tab 1: overview
   with tab1:
     row1_col1, row1_col2 = st.columns(2)
 
+    #overall customers
     with row1_col1:
       st.subheader('Customers')
       if 'Churn' in df.columns:
@@ -135,6 +136,7 @@ try:
         
         st_echarts(options=opt_donut, height='300px')
 
+    #customer behavior pattern
     with row1_col2:
       st.subheader('Customer Behavior Patterns')
       radar_cols = ['HourSpendOnApp',
@@ -193,6 +195,7 @@ try:
 
     row2_col1, row2_col2, row2_col3, row2_col4 = st.columns(4)
 
+    #churn rate by product category
     with row2_col1:
       if 'PreferedOrderCat' in df.columns and 'Churn' in df.columns:
         st.subheader('Churn Rate by Product Category')
@@ -211,7 +214,8 @@ try:
                                'itemStyle': {'color': '#91CC75', 'borderRadius': [4, 4, 0, 0]}}]}
         
         st_echarts(options=opt_cat, height='300px')
-
+    
+    #churn risk by payment method
     with row2_col2:
       if 'PreferredPaymentMode' in df.columns and 'Churn' in df.columns:
         st.subheader('Churn Risk by Payment Method')
@@ -231,7 +235,7 @@ try:
         
         st_echarts(options=opt_pay, height='300px')
 
-
+    #churn rate by tenure
     with row2_col3:
       if tenure_col and 'Churn' in df.columns:
         st.subheader('Churn Rate by Tenure')
@@ -256,6 +260,7 @@ try:
         
         st_echarts(options=opt_tenure, height='300px')
 
+    #churn rate by satisfaction
     with row2_col4:
       if 'SatisfactionScore' in df.columns and 'Churn' in df.columns:
         st.subheader('Churn Rate by Satisfaction')
@@ -276,7 +281,7 @@ try:
         
         st_echarts(options=opt_sat, height='300px')
 
-  #Tab 2: sustainability & logistics
+  #tab 2: sustainability & logistics
   with tab2:
     st.info('**What is ESG (Environmental, Social, and Governance) in this context?**\n\nCustomer dissatisfaction,'
             ' delivery distance, and product returns increase reverse'
@@ -284,6 +289,7 @@ try:
     
     col_chart1, col_chart2 = st.columns(2)
 
+    #co2 emissions & returns by complaint
     with col_chart1:
       st.subheader('CO2 Emissions & Returns by Complaint')
       if ('Complain' in df.columns
@@ -314,6 +320,7 @@ try:
       else:
         st.warning('Required ESG columns (Complain, Estimated_Returns, or Estimated_CO2_kg) not found in dataset.')
 
+    #complaints vs. warehouse distance category
     with col_chart2:
       st.subheader('Complaints vs. Warehouse Distance Category')
       if 'DistanceCategory' in df.columns and 'Complain' in df.columns:
@@ -338,13 +345,15 @@ try:
         
         st_echarts(options=opt_dist, height='360px')
 
-        #info 
-        st.info('Maximum warehouse distance reaches 127 km, capturing remote or rural delivery (outliers). ')
+        #info outliers
+        st.caption('Note: Maximum warehouse distance reaches 127 km, capturing remote or rural delivery (outliers).')
+
       else:
         st.warning('DistanceCategory column not found in dataset.')
 
     st.divider()
 
+    #co2 reduction simulator
     st.subheader('CO2 Reduction Simulator')
     sim_col1, sim_col2 = st.columns([1, 2])
     with sim_col1:
@@ -374,8 +383,47 @@ try:
         st.write('Simulator data columns unavailable.')
 
   #Tab 3: risk simulator (trained model + manual boosters + SHAP)
-
   with tab3:
+     #model metric
+    with st.expander('XGBoost Model Performance & Evaluation Metrics'):
+         st.write('Core validation metrics for the trained classification model evaluated on the test set:')
+        
+         #metrics
+         m1, m2, m3, m4 = st.columns(4)
+        
+         m1.metric(label="ROC-AUC", value="0.99", help="Overall model separation power")
+         m2.metric(label="Churn Recall", value="85%", help="Percentage of actual churners successfully caught")
+         m3.metric(label="Decision Threshold", value="0.65", help="Tuned from default 0.50 to reduce false positives")
+         m4.metric(label="Optimised F1-Score", value="0.85", help="Harmonic mean of precision and recall")
+        
+         st.markdown("---")
+        
+         #classification reports
+         col_rep1, col_rep2 = st.columns(2)
+        
+         #dataframe classification reports
+         report_default = pd.DataFrame({'Precision': [0.99, 0.74],
+                                        'Recall': [0.93, 0.94],
+                                        'F1-Score': [0.96, 0.83],
+                                        'Support': [936, 190]}, index=['Class 0 (Retained)', 'Class 1 (Churn/Complaint)'])
+        
+         report_optimized = pd.DataFrame({'Precision': [0.97, 0.84],
+                                          'Recall': [0.97, 0.85],
+                                          'F1-Score': [0.97, 0.85],
+                                          'Support': [936, 190]}, index=['Class 0 (Retained)', 'Class 1 (Churn/Complaint)'])
+        
+         with col_rep1:
+           st.subheader('Standard Evaluation (Threshold 0.50)')
+           st.dataframe(report_default.style.format({'Precision': '{:.2f}', 'Recall': '{:.2f}', 'F1-Score': '{:.2f}'}),use_container_width=True)
+        
+         with col_rep2:
+           st.subheader('Optimised Evaluation (Threshold 0.65)')
+           st.dataframe(report_optimized.style.format({'Precision': '{:.2f}', 'Recall': '{:.2f}', 'F1-Score': '{:.2f}'}),use_container_width=True)
+        
+         st.caption('Note: Threshold tuned to 0.65 to maximise F1-Score balance for customer complaint and churn risk prediction.')
+
+    #st.divider()
+    #the calculate simulation
     st.subheader('Customer Churn Risk Simulator')
     st.markdown('Adjust the customer details below to see their live churn risk score and what is driving it.')
 
@@ -505,50 +553,9 @@ try:
       fig, ax = plt.subplots(figsize=(10, 4.5))
       shap.plots.waterfall(shap_values[0], max_display=7, show=False)
       st.pyplot(fig, use_container_width=True)
-      plt.clf()
+      plt.close(fig)
     except Exception as shap_err:
       st.info(f'Explanation visualization building... ({shap_err}).')
-
-
-    with tab3:
-      #model metric
-        with st.expander('XGBoost Model Performance & Evaluation Metrics'):
-          st.write('Core validation metrics for the trained classification model evaluated on the test set:')
-    
-          #metrics
-          m1, m2, m3, m4 = st.columns(4)
-    
-          m1.metric(label="ROC-AUC", value="0.99", help="Overall model separation power")
-          m2.metric(label="Churn Recall", value="85%", help="Percentage of actual churners successfully caught")
-          m3.metric(label="Decision Threshold", value="0.65", help="Tuned from default 0.50 to reduce false positives")
-          m4.metric(label="Optimised F1-Score", value="0.85", help="Harmonic mean of precision and recall")
-    
-          st.markdown("---")
-    
-        #classification reports
-          col_rep1, col_rep2 = st.columns(2)
-    
-        #dataframe classification reports
-          report_default = pd.DataFrame({'Precision': [0.99, 0.74],
-                                         'Recall': [0.93, 0.94],
-                                         'F1-Score': [0.96, 0.83],
-                                         'Support': [936, 190]}, index=['Class 0 (Retained)', 'Class 1 (Churn/Complaint)'])
-    
-          report_optimized = pd.DataFrame({'Precision': [0.97, 0.84],
-                                           'Recall': [0.97, 0.85],
-                                           'F1-Score': [0.97, 0.85],
-                                           'Support': [936, 190]}, index=['Class 0 (Retained)', 'Class 1 (Churn/Complaint)'])
-    
-          with col_rep1:
-              st.subheader('Standard Evaluation (Threshold 0.50)')
-              st.dataframe(report_default.style.format({'Precision': '{:.2f}', 'Recall': '{:.2f}', 'F1-Score': '{:.2f}'}),use_container_width=True)
-    
-          with col_rep2:
-              st.subheader('Optimised Evaluation (Threshold 0.65)')
-              st.dataframe(report_optimized.style.format({'Precision': '{:.2f}', 'Recall': '{:.2f}', 'F1-Score': '{:.2f}'}),use_container_width=True)
-    
-          st.caption('Note: Threshold tuned to 0.65 to maximise F1-Score balance for customer complaint and churn risk prediction.')
-     
 
   #Tab 4: data
   with tab4:
