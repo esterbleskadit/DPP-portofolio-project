@@ -391,10 +391,10 @@ try:
          #metrics
          m1, m2, m3, m4 = st.columns(4)
         
-         m1.metric(label="ROC-AUC", value="0.99", help="Overall model separation power")
+         m1.metric(label="ROC-AUC", value="0.99", help="Model performance")
          m2.metric(label="Churn Recall", value="85%", help="Percentage of actual churners successfully caught")
          m3.metric(label="Decision Threshold", value="0.65", help="Tuned from default 0.50 to reduce false positives")
-         m4.metric(label="Optimised F1-Score", value="0.85", help="Harmonic mean of precision and recall")
+         m4.metric(label="Optimised F1-Score", value="0.85", help="Precision-Recall balance")
         
          st.markdown("---")
         
