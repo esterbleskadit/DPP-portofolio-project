@@ -1,4 +1,4 @@
-# E-Commerce Churn & Sustainability Analytics Dashboard
+# E-Commerce Churn & Sustainability Optimisation
 
 A data-driven interactive portfolio project bridging customer retention analytics with logistics efficiency and carbon footprint reduction (ESG).
 

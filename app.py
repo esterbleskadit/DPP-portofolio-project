@@ -523,34 +523,65 @@ try:
 
       #metrics
       m1, m2, m3, m4 = st.columns(4)
-      m1.metric(label="ROC-AUC Score", value="0.9859")
-      m2.metric(label="Default Recall", value="93.68%")
-      m3.metric(label="Optimal Threshold", value="0.65")
-      m4.metric(label="Optimal F1", value="0.8482")
+    #   m1.metric(label="ROC-AUC Score", value="0.9859")
+    #   m2.metric(label="Default Recall", value="93.68%")
+    #   m3.metric(label="Optimal Threshold", value="0.65")
+    #   m4.metric(label="Optimal F1", value="0.8482")
+
+      m1.metric(label="ROC-AUC", value="0.99", help="Overall model separation power")
+      m2.metric(label="Churn Recall", value="85%", help="Percentage of actual churners successfully caught")
+      m3.metric(label="Decision Threshold", value="0.65", help="Tuned from default 0.50 to reduce false positives")
+      m4.metric(label="Optimised F1-Score", value="0.85", help="Harmonic mean of precision and recall")
 
       st.markdown("---")
 
-    #reports
+    # #metrics reports
+    #   col_rep1, col_rep2 = st.columns(2)
+
+    #   with col_rep1:
+    #     st.subheader('Standard Evaluation (Threshold 0.50)')
+    #     st.text("""Classification Report:
+    #               precision    recall  f1-score   support
+    #            0       0.99      0.93      0.96       936
+    #            1       0.74      0.94      0.83       190
+    #     """)
+
+    #   with col_rep2:
+    #     st.subheader('Optimised Evaluation (Threshold 0.65)')
+    #     st.text("""Classification Report:
+    #               precision    recall  f1-score   support
+    #            0       0.97      0.97      0.97       936
+    #            1       0.84      0.85      0.85       190
+    #     """)
+
+    #   st.caption('Note: Threshold tuned to 0.65 to maximise F1-Score balance for'
+    #              ' customer complaint and churn risk prediction.')
+        # Metrics row
+
+    #classification reports
       col_rep1, col_rep2 = st.columns(2)
 
+    #dataframe classification reports
+      report_default = pd.DataFrame({'Precision': [0.99, 0.74],
+                                     'Recall': [0.93, 0.94],
+                                     'F1-Score': [0.96, 0.83],
+                                     'Support': [936, 190]}, index=['Class 0 (Retained)', 'Class 1 (Churn/Complaint)'])
+
+      report_optimized = pd.DataFrame({'Precision': [0.97, 0.84],
+                                       'Recall': [0.97, 0.85],
+                                       'F1-Score': [0.97, 0.85],
+                                       'Support': [936, 190]}, index=['Class 0 (Retained)', 'Class 1 (Churn/Complaint)'])
+
       with col_rep1:
-        st.subheader('Standard Evaluation (Threshold 0.50)')
-        st.text("""Classification Report:
-                  precision    recall  f1-score   support
-               0       0.99      0.93      0.96       936
-               1       0.74      0.94      0.83       190
-        """)
+          st.subheader('Standard Evaluation (Threshold 0.50)')
+          st.dataframe(report_default.style.format({'Precision': '{:.2f}', 'Recall': '{:.2f}', 'F1-Score': '{:.2f}'}),use_container_width=True)
 
       with col_rep2:
-        st.subheader('Optimised Evaluation (Threshold 0.65)')
-        st.text("""Classification Report:
-                  precision    recall  f1-score   support
-               0       0.97      0.97      0.97       936
-               1       0.84      0.85      0.85       190
-        """)
+          st.subheader('Optimised Evaluation (Threshold 0.65)')
+          st.dataframe(report_optimized.style.format({'Precision': '{:.2f}', 'Recall': '{:.2f}', 'F1-Score': '{:.2f}'}),use_container_width=True)
 
-      st.caption('Note: Threshold tuned to 0.65 to maximise F1-Score balance for'
-                 ' customer complaint and churn risk prediction.')
+      st.caption('Note: Threshold tuned to 0.65 to maximise F1-Score balance for customer'
+                  ' complaint and churn risk prediction.')
 
     st.divider()  
 
