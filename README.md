@@ -41,7 +41,7 @@ The primary goal of this application is to quantify how customer dissatisfaction
 
 ## Key Features
 * Interactive Multi-Tab Dashboard: Deep dive into user behavior patterns, product category churn rates, and payment mode risk distributions using Apache ECharts.
-* ESG & Logistics Analytics: Analyzes correlation between customer complaints, delivery distance outliers (up to 127 km), return rates, and resulting CO2footprints.
+* ESG & Logistics Analytics: Analyzes correlation between customer complaints, delivery distance outliers (up to 127 km), return rates, and resulting $CO_2$ footprints.
 * Real-Time Risk Simulator & Profiles: Test custom configurations or instant preset profiles (High-Risk Rural Shopper vs. Loyal Urban Regular) to visualize dynamic churn probability gauges.
 * Explainable AI (XAI): Integrated SHAP waterfall charts that break down exact positive/negative feature contributions for every individual simulation.
 * Executive Reporting: Instant export functionality for summarized risk evaluations and recommended retention interventions.
@@ -105,7 +105,7 @@ ecommerce-churn-portfolio/
 ## Dashboard Overview
 
 * Overview (Tab 1): Executive metrics tracking customer retention ratios, churn by product category, payment method risks, and cohort behavioral patterns.
-* Sustainability & Logistics (Tab 2): ESG breakdown of $CO_2$ emissions and returns linked to complaint status, including an interactive CO2 Reduction Simulator.
+* Sustainability & Logistics (Tab 2): ESG breakdown of $CO_2$ emissions and returns linked to complaint status, including an interactive $CO_2$ Reduction Simulator.
 * Risk Simulator (Tab 3): Real-time single-customer churn prediction gauge powered by the XGBoost pipeline, preset selectors, SHAP explainability, and executive text export.
 * Data (Tab 4): Filtered dataset viewer with CSV export functionality.
 
